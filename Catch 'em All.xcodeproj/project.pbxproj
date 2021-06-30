@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		A8888323268CB89B009A335F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8888322268CB89B009A335F /* AppDelegate.swift */; };
 		A8888325268CB89B009A335F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8888324268CB89B009A335F /* SceneDelegate.swift */; };
-		A8888327268CB89B009A335F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8888326268CB89B009A335F /* ViewController.swift */; };
+		A8888327268CB89B009A335F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8888326268CB89B009A335F /* ListViewController.swift */; };
 		A888832A268CB89B009A335F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8888328268CB89B009A335F /* Main.storyboard */; };
 		A888832C268CB8A5009A335F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A888832B268CB8A5009A335F /* Assets.xcassets */; };
 		A888832F268CB8A5009A335F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A888832D268CB8A5009A335F /* LaunchScreen.storyboard */; };
+		A8888337268CC589009A335F /* Creatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8888336268CC589009A335F /* Creatures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A888831F268CB89B009A335F /* Catch 'em All.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catch 'em All.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8888322268CB89B009A335F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8888324268CB89B009A335F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A8888326268CB89B009A335F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A8888326268CB89B009A335F /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A8888329268CB89B009A335F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A888832B268CB8A5009A335F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A888832E268CB8A5009A335F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8888330268CB8A5009A335F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8888336268CC589009A335F /* Creatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				A8888322268CB89B009A335F /* AppDelegate.swift */,
 				A8888324268CB89B009A335F /* SceneDelegate.swift */,
-				A8888326268CB89B009A335F /* ViewController.swift */,
+				A8888336268CC589009A335F /* Creatures.swift */,
+				A8888326268CB89B009A335F /* ListViewController.swift */,
 				A8888328268CB89B009A335F /* Main.storyboard */,
 				A888832B268CB8A5009A335F /* Assets.xcassets */,
 				A888832D268CB8A5009A335F /* LaunchScreen.storyboard */,
@@ -137,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8888327268CB89B009A335F /* ViewController.swift in Sources */,
+				A8888337268CC589009A335F /* Creatures.swift in Sources */,
+				A8888327268CB89B009A335F /* ListViewController.swift in Sources */,
 				A8888323268CB89B009A335F /* AppDelegate.swift in Sources */,
 				A8888325268CB89B009A335F /* SceneDelegate.swift in Sources */,
 			);
