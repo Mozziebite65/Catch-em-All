@@ -12,6 +12,8 @@ class ListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
+    
+    
     var creatures = Creatures()
     
     override func viewDidLoad() {
@@ -27,11 +29,43 @@ class ListViewController: UIViewController {
         creatures.getData {
             
             DispatchQueue.main.async {
+                
+                self.navigationItem.title = "\(self.creatures.creatureArray.count) of \(self.creatures.count) Pokemon"
                 self.tableView.reloadData()
+                
             }
             
         }
     
+    }
+    
+    
+    func loadAll() {
+        
+        if creatures.urlString.hasPrefix("http") {
+            
+            creatures.getData {
+                
+                DispatchQueue.main.async {
+                    
+                    self.navigationItem.title = "\(self.creatures.creatureArray.count) of \(self.creatures.count) Pokemon"
+                    self.tableView.reloadData()
+                }
+                
+                self.loadAll()      // Recursive call - keep looping until the "next" value is null
+            }
+            
+        } else {
+            print("All done - all loaded. Total Pokemon = \(creatures.creatureArray.count)")
+        }
+        
+    }
+    
+    
+    @IBAction func loadAllButtonPressed(_ sender: UIBarButtonItem) {
+        
+        loadAll()
+        
     }
 
 }
@@ -47,17 +81,20 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("\(indexPath.row + 1) of \(creatures.creatureArray.count)")
+        //print("\(indexPath.row + 1) of \(creatures.creatureArray.count)")
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        // check if there is more data in other URLs
+        // check if there is more data in other URLs ***** IF ***** we have scrolled to the bottom of the current loaded rows
         if indexPath.row == creatures.creatureArray.count - 1 && creatures.urlString.hasPrefix("https") {
             
             // Get the next 20 from the "next" URL in the API
             creatures.getData {
                 
                 DispatchQueue.main.async {
+                    
+                    self.navigationItem.title = "\(self.creatures.creatureArray.count) of \(self.creatures.count) Pokemon"
                     self.tableView.reloadData()
+                    
                 }
                 
             }

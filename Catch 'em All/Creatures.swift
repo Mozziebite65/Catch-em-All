@@ -30,12 +30,7 @@ class Creatures {
     
     
     func getData(completed: @escaping ()->()) {
-        
-        //while urlString.hasPrefix("https") {
-            
-            //}
-            
-            
+
             print("🕸 We are accessing the URL string \(urlString)")
             
             // Create a URL
@@ -76,7 +71,7 @@ class Creatures {
             }
             
             task.resume()
-        //}
+       
     }
     
 }
