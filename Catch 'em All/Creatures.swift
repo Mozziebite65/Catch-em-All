@@ -15,13 +15,7 @@ class Creatures {
         var count: Int = 0
         var next: String?
         var results: [Creature]
-    }
-    
-    struct Creature: Codable {
-        
-        var name: String = ""
-        var url: String = ""
-        
+
     }
     
     var count = 0

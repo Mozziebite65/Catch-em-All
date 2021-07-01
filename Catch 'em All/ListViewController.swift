@@ -12,9 +12,8 @@ class ListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    
-    
     var creatures = Creatures()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         
@@ -25,7 +24,14 @@ class ListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        setUpActivityIndicator()
+        
         // Get the creatures data. The code in the curlies is the closure code that will be passed to the function as the "completed" parameter.
+
+        // Set the spinny wheel while the data is retrieved
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+        
         creatures.getData {
             
             DispatchQueue.main.async {
@@ -33,12 +39,25 @@ class ListViewController: UIViewController {
                 self.navigationItem.title = "\(self.creatures.creatureArray.count) of \(self.creatures.count) Pokemon"
                 self.tableView.reloadData()
                 
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                
             }
             
         }
-    
+
     }
     
+    
+    func setUpActivityIndicator() {
+        
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.color = UIColor.red
+        view.addSubview(activityIndicator)
+        
+    }
     
     func loadAll() {
         
@@ -50,19 +69,42 @@ class ListViewController: UIViewController {
                     
                     self.navigationItem.title = "\(self.creatures.creatureArray.count) of \(self.creatures.count) Pokemon"
                     self.tableView.reloadData()
+  
                 }
                 
                 self.loadAll()      // Recursive call - keep looping until the "next" value is null
             }
             
         } else {
-            print("All done - all loaded. Total Pokemon = \(creatures.creatureArray.count)")
+            
+            DispatchQueue.main.async {
+                
+                print("All done - all loaded. Total Pokemon = \(self.creatures.creatureArray.count)")
+                
+                self.activityIndicator.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                
+            }
         }
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ShowDetail" {       // Don't need this, but...
+            
+            let destVC = segue.destination as! DetailViewController
+            let selectedIndexPathRow = tableView.indexPathForSelectedRow!.row
+            destVC.creature = creatures.creatureArray[selectedIndexPathRow]
+            
+        }
+    }
     
     @IBAction func loadAllButtonPressed(_ sender: UIBarButtonItem) {
+        
+        // Set the spinny wheel while the data is retrieved
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         
         loadAll()
         
@@ -88,12 +130,20 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == creatures.creatureArray.count - 1 && creatures.urlString.hasPrefix("https") {
             
             // Get the next 20 from the "next" URL in the API
+            
+            // Set the spinny wheel while the data is retrieved
+            activityIndicator.startAnimating()
+            self.view.isUserInteractionEnabled = false
+            
             creatures.getData {
                 
                 DispatchQueue.main.async {
                     
                     self.navigationItem.title = "\(self.creatures.creatureArray.count) of \(self.creatures.count) Pokemon"
                     self.tableView.reloadData()
+                    
+                    self.activityIndicator.stopAnimating()
+                    self.view.isUserInteractionEnabled = true
                     
                 }
                 
